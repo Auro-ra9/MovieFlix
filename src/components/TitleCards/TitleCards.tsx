@@ -1,14 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import './TitleCards.css';
-import cards_data from '../../assets/cards/Cards_data';
 import axios from 'axios';
 import { IMAGE_URL } from '../../constants/Constants';
 import { Link } from 'react-router-dom';
 
-interface Card {
-  image: string;
-  name: string;
-}
 
 interface TitleCardProps{
   title:string;
@@ -44,7 +39,7 @@ const TitleCards = ({title,URL}:TitleCardProps) => {
         currentRef.removeEventListener('wheel', handleWheel as unknown as EventListener);
       }
     };
-  }, [cards_data]);
+  }, []);
 
 
   // get the movies details
