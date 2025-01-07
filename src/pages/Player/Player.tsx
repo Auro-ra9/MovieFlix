@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { API_KEY, baseURL } from "../../constants/Constants";
-import toast from "react-hot-toast";
 
 type apiDataTye = {
   name: string;
