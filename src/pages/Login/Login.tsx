@@ -1,6 +1,6 @@
 import "./Login.css";
 import logo from "../../assets/logo.png";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { login, signup } from "../../firebase";
 import netfix_spinner from "../../assets/netflix_spinner.gif";
@@ -12,9 +12,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [togglePassword,setTogglePassword]= useState(false);
-
-
+  const [togglePassword, setTogglePassword] = useState(false);
 
   const validateInputs = (): boolean => {
     if (signState === "Sign Up") {
@@ -34,7 +32,9 @@ const Login: React.FC = () => {
       toast.error("Please enter your email address.");
       return false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      toast.error("Please enter a valid email address. Example: email@example.com.");
+      toast.error(
+        "Please enter a valid email address. Example: email@example.com."
+      );
       return false;
     }
 
@@ -45,7 +45,9 @@ const Login: React.FC = () => {
       toast.error("Password must be at least 6 characters long.");
       return false;
     } else if (!/(?=.*[0-9])(?=.*[A-Z])(?=.*\W)/.test(password)) {
-      toast.error("Password must include at least one number, one uppercase letter, and one special character.");
+      toast.error(
+        "Password must include at least one number, one uppercase letter, and one special character."
+      );
       return false;
     }
 
@@ -94,16 +96,20 @@ const Login: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter Email"
           />
-          <input
-            type={togglePassword?"text":"password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+          <div className="password-container">
+            <input
+              type={togglePassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
             />
-            <span onClick={()=>setTogglePassword((curr)=>!curr)}>
-              {togglePassword? <Eye/>:<EyeClosed />}
+            <span
+              className="toggle-password"
+              onClick={() => setTogglePassword((curr) => !curr)}
+            >
+              {togglePassword ? <Eye /> : <EyeClosed />}
             </span>
-           
+          </div>
           <button type="submit">{signState}</button>
           <div className="form-help">
             <div className="remember">
